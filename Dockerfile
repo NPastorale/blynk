@@ -2,12 +2,13 @@ FROM alpine:latest
 
 RUN apk update && \
     apk upgrade && \
-    apk --progress --no-cache add openjdk8-jre curl && \
+    apk --progress --no-cache add openjdk8-jre curl wget && \
     mkdir /blynk && \
     mkdir /data && \
     mkdir /config && \
     touch /config/server.properties && \
-    curl -L https://github.com/blynkkk/blynk-server/releases/download/v0.30.0/server-0.30.0-java8.jar > /blynk/server.jar
+    curl -s https://api.github.com/repos/blynkkk/blynk-server/releases/latest | grep "browser_download_url.*java8" | cut -d : -f 2,3  | tr -d \" | wget -i - -O /blynk/server.jar && \
+    apk del curl wget
 
 VOLUME ["/config", "/data/backup"]
 
