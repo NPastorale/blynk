@@ -1,2 +1,2 @@
 # blynk
-Docker automated build of Blink server
+Docker automated build of Blynk server
