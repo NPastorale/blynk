@@ -1,5 +1,7 @@
 FROM alpine:latest
 
+LABEL maintainer="npastorale@gmail.com"
+
 RUN apk update && \
     apk upgrade && \
     apk --progress --no-cache add openjdk8-jre curl wget && \
